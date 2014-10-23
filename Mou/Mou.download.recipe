@@ -11,7 +11,7 @@
 		<key>NAME</key>
 		<string>Mou</string>
 		<key>APPCAST_URL</key>
-        <string>http://mouapp.com/up/updates.xml</string>
+		<string>http://mouapp.com/up/updates.xml</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.0</string>
