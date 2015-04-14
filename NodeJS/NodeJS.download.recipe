@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the current release version of NodeJS.</string>
+	<key>Identifier</key>
+	<string>com.github.jlrgraham.autopkg.download.NodeJS</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>NodeJS</string>
+        <key>NODE_JS_DISTS_DIR</key>
+        <string>http://nodejs.org/dist/latest/</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
+			<key>Arguments</key>
+			<dict>
+				<key>url</key>
+				<string>%NODE_JS_DISTS_DIR%</string>
+                <key>result_output_var_name</key>
+                <string>VERSION</string>
+                <key>re_pattern</key>
+                <string>a href="node-v([0-9\.]+)\.pkg</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+        </dict>
+		<dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+			<key>Arguments</key>
+			<dict>
+                <key>url</key>
+                <string>%NODE_JS_DISTS_DIR%/node-v%VERSION%.pkg</string>
+            </dict>
+		</dict>
+	</array>
+</dict>
+</plist>
